@@ -1,0 +1,19 @@
+a{
+    color: #f8f9fa !important;
+}
+
+a:hover{
+    color: #f8f9fa !important;
+}
+
+.nav-item{
+    margin: 0px 10px;
+}
+
+.nav-item:hover{
+    background-color: #f8f9fa;
+}
+
+.nav-link:hover{
+    color: #212529 !important;
+}

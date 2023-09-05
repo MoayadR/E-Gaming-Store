@@ -1,0 +1,12 @@
+.fa:hover{
+    color: #212529 ;
+}
+
+.fa{
+    width: 100% ;
+}
+
+.icontainer{
+    padding: 0px !important;
+    width: 2.5%;
+}

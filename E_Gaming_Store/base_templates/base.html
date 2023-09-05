@@ -1,9 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Home {% endblock%}</title>
+    <link rel="stylesheet" href="{% static 'Bootstrap/css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'core/base/base.css'%}">
+    <link rel="stylesheet" href="{% static 'core/navbar/navbar.css'%}">
+    <link rel="stylesheet" href="{% static 'core/footer/footer.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {% block links%}
 
     {% endblock %}
@@ -23,11 +29,12 @@
 
     {% block content %}
     
-    
     {% endblock %}
     
     {% include "footer.html" %}
 
+
+    <script src="{% static 'Bootstrap/js/bootstrap.js' %}"></script>
     {% block scripts %}
 
     {% endblock %}
