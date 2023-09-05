@@ -23,4 +23,7 @@ from django.urls import path , include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('' , include("core.urls")),
+    path('access/' , include("access.urls")),
+    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

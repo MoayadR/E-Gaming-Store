@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Home {% endblock%}</title>
+    {% block links%}
+
+    {% endblock %}
+</head>
+<body>
+    {% include "navbar.html" %}
+    
+    
+    {% if messages %}
+    <div id="messages">
+        {% for message in messages %}
+        <h5 id="{{message.tags}}">{{message}}</h5>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+
+    {% block content %}
+    
+    
+    {% endblock %}
+    
+    {% include "footer.html" %}
+
+    {% block scripts %}
+
+    {% endblock %}
+    
+</body>
+</html>
