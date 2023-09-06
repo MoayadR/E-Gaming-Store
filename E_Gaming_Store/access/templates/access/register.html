@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+ {% load static %} 
+ {% block title %} Register {% endblock %} 
+
+ {% block links %}
+<link rel="stylesheet" href="{% static 'access/register/register.css' %}">
+{% endblock %} 
+
+
+{% block content %}
+<div id="form-div">
+<form action="" method="post" id="form-register">
+    {% csrf_token %}
+	<h2>Sign Up</h2>
+		
+	{% for field in form %}
+	<div class="input-div">
+		{% if field.errors %}
+		<ul class="errorlist">
+			{% for error in field.errors %}
+			<li>{{ error }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+	 	{{ field.label_tag }} 
+        <br>
+        {{ field }}
+	</div>
+
+
+	{% endfor %}
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input form-input" id="check">
+        <label class="form-check-label" for="check">Show Password</label>
+    </div>
+	<input class="btn btn-light" id="submitBtn" type="submit" value="Register" />
+</form>
+
+<div class="redirect">
+    <p>Already have an account? <a href="{% url 'login'%}">Login Now</a></p>
+  </div>
+</div>
+
+
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'access/showPassword/showPasswordRegister.js'%}"></script>
+{% endblock %}

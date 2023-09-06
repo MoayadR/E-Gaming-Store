@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="{% static 'core/navbar/navbar.css'%}">
     <link rel="stylesheet" href="{% static 'core/footer/footer.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body{
+            background-image: url('{% static 'img/bg2.jpg'%}');
+        }
+    </style>
     {% block links%}
 
     {% endblock %}
@@ -21,7 +26,7 @@
     {% if messages %}
     <div id="messages">
         {% for message in messages %}
-        <h5 class="text-danger m-2" id="{{message.tags}}">{{message}}</h5>
+        <h5 class="text-light m-2" id="{{message.tags}}">{{message}}</h5>
         {% endfor %}
     </div>
     {% endif %}

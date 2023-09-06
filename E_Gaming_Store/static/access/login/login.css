@@ -9,7 +9,7 @@
     border-radius: 15px;
 }
 
-h1{
+h2{
     color: #f8f9fa;
 }
 
@@ -50,4 +50,10 @@ color: #f8f9fa;
 
 .form-input{
     border-radius: 25px !important;
+}
+
+
+.redirect{
+    color:#f8f9fa;
+    margin-top: 5%;
 }
