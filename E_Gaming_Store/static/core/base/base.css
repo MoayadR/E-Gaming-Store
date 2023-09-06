@@ -8,3 +8,12 @@ body{
 footer{
     margin-top: auto;
 }
+
+#messages{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: 1% auto;
+    background-color: #212529;
+    border-radius: 15px;
+}

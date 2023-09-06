@@ -21,7 +21,7 @@
     {% if messages %}
     <div id="messages">
         {% for message in messages %}
-        <h5 id="{{message.tags}}">{{message}}</h5>
+        <h5 class="text-danger m-2" id="{{message.tags}}">{{message}}</h5>
         {% endfor %}
     </div>
     {% endif %}

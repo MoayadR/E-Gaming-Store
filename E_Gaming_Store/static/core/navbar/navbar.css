@@ -17,3 +17,17 @@ a:hover{
 .nav-link:hover{
     color: #212529 !important;
 }
+
+.menu{
+    width: 35px;
+    height: 5px;
+    background-color: #f8f9fa;
+    margin: 4px 0;
+}
+
+#menuBtn:hover{
+    background-color: #f8f9fa !important;
+}
+#menuBtn:hover div{
+    background-color: #212529;
+}
