@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body{
-            background-image: url('{% static 'img/bg-main.png'%}');
-            background-position:  center;
+            background-image: url('{% static 'img/bg.jpg'%}');
+            /* background-repeat: no-repeat;
+            background-size: cover; */
+            background-position: center;
         }
     </style>
     {% block links%}
@@ -34,7 +36,6 @@
     
 
     {% block content %}
-    
     {% endblock %}
     
     {% include "footer.html" %}
