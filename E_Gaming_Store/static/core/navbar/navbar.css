@@ -31,3 +31,79 @@ a:hover{
 #menuBtn:hover div{
     background-color: #212529;
 }
+
+#access{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.access-btn{
+    width: 45%;
+    border: 2px #f8f9fa solid;
+}
+
+.access-btn:hover{
+    background-color: #f8f9fa;
+}
+
+.access-btn:hover a{
+    color: #212529 !important;
+}
+
+.access-link{
+    text-decoration: none;
+}
+
+.offcanvas-body{
+    display: flex;
+    flex-direction: column;
+}
+
+.cart{
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-icon-div{
+    display: flex;
+    justify-content: center;
+}
+
+.circle {
+    border-radius: 50%;
+    margin-top: 1%;
+    width: 34px;
+    height: 34px;
+    background: #fff;
+    border: 3px solid #000;
+    color: #000;
+    text-align: center;
+}
+
+.delete-div{
+    display: flex;
+    justify-content: end;
+}
+
+.delete-item:hover{
+    color: red !important;
+}
+
+.cart-items{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-item-img{
+    width: 50%;
+}
+
+.cart-item-detail{
+    color: #f8f9fa;
+}
+
+.logout-div{
+    display: flex;
+    justify-content: center;
+}

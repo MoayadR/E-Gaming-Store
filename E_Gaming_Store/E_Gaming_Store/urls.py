@@ -26,4 +26,5 @@ urlpatterns = [
     path('' , include("core.urls")),
     path('access/' , include("access.urls")),
     
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

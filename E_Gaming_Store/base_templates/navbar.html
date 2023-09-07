@@ -39,11 +39,68 @@
 
 <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header text-light">
-    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+
+    {% if request.user.is_authenticated %}
+    <h5 id="offcanvasRightLabel">Hello {{request.user.username}}</h5>
+    {% else %}
+    <h5 id="offcanvasRightLabel">Join us now</h5>
+    {% endif %}
+
+
     <button type="button" class="btn-close btn-close-white text-reset " data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
     <!-- body items here -->
+    {% if request.user.is_authenticated %}
+
+    {% if request.user.is_superuser %}
+    <div id="access">
+    <button class="btn btn-dark access-btn"><a class="access-link" href="admin/">Admin Panel</a></button>
+    <button class="btn btn-dark access-btn"><a class="access-link" href="">Feedbacks</a></button>
+    </div>
+    <hr class="text-light">
+    {% endif %}
+
+    {% else %}
+    <div id="access"> 
+      <button class="btn btn-dark access-btn"><a class="access-link" href="{% url 'login' %}">Login</a></button>
+      <button class="btn btn-dark access-btn"><a class="access-link" href="{% url 'register' %}">Register</a></button>
+    </div>
+    <hr class="text-light">
+    {% endif %}
+      
+    {% if request.user.is_authenticated %}
+        <!-- Cart -->
+        <div class="cart">
+
+          <div class="cart-icon-div">
+            <i class="fa fa-shopping-cart" style="font-size:48px; width: 50px; color: #f8f9fa;"></i>
+            <div class="circle">{{numberOfItems}}</div>
+          </div>
+        <hr class="text-light">
+
+    {% for cartItem in userCartItems %}
+    <div class="delete-div">
+      <a href=""><i class="fa fa-trash mb-2 delete-item text-light" aria-hidden="true" style="font-size:20px; width: 20px;"></i></a>
+    </div>
+    <div class="cart-items">
+      <img src="{{cartItem.product.image.url}}" class="cart-item-img" alt="product-img" >
+      <div class="cart-items-details">
+        <p class="cart-item-detail">Name: {{cartItem.product.name}}</p>
+        <p class="cart-item-detail">Price: {{cartItem.product.price}}</p>
+      </div>
+    </div>
+    <hr class="text-light">
+    {% endfor %}
+
+    <div class="logout-div">
+      <button class="btn btn-dark access-btn"><a class="access-link" href="{% url 'logout' %}">Logout</a></button>
+    </div>
+     
+    {% endif %}
+
+    </div>
+
   </div>
 </div>
 

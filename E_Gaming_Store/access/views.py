@@ -1,9 +1,10 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate , login
+from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from .forms import RegisterForm
+from core.models import Cart
 
 
 # Create your views here.
@@ -32,12 +33,17 @@ def registerPage(request):
             password1 = form.cleaned_data['password1']
             password2 = form.cleaned_data['password2']
 
+            if User.objects.filter(username = username).count() > 0:
+                messages.warning(request , 'Username already exists')
+                return redirect('register')
+
             if password1 != password2:
                 messages.warning(request , 'Password and Confirmation password doesn\'t match')
                 return redirect('register')
 
             password1 = make_password(password1)
             user = User.objects.create(username = username , password = password1 , email = email)
+            cart = Cart.objects.create(user = user)
             
             messages.success(request,"Registered Successfully")
             login(request , user)
@@ -46,3 +52,7 @@ def registerPage(request):
     # GET request
     form = RegisterForm()
     return render(request , 'access/register.html' , {'form' : form})
+
+def logout_page(request):
+    logout(request)
+    return redirect('index')
