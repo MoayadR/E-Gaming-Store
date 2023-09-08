@@ -84,7 +84,9 @@
       <a href=""><i class="fa fa-trash mb-2 delete-item text-light" aria-hidden="true" style="font-size:20px; width: 20px;"></i></a>
     </div>
     <div class="cart-items">
-      <img src="{{cartItem.product.image.url}}" class="cart-item-img" alt="product-img" >
+      {% if cartItem.product.image %}
+        <img src="{{cartItem.product.image.url}}" class="cart-item-img" alt="product-img" >
+      {% endif %}
       <div class="cart-items-details">
         <p class="cart-item-detail">Name: {{cartItem.product.name}}</p>
         <p class="cart-item-detail">Price: {{cartItem.product.price}}</p>
