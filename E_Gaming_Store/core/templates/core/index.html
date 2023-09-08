@@ -1,4 +1,65 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
 Homepage
+{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'core/index/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container" style="display: flex; justify-content: center; width: 1140px; flex-direction: column;">
+    <div class="slider" style="display: block; width: 100%;">
+        <img id="slide" src="{% static '/img/img4.jpg' %}" alt="" height="404px" width="1140px">
+    </div>
+    <div class="bestSeller" style="display: block; margin: 60px 0 30px 0; width: 1140px;">
+        <h2 style="color: white;">
+            BEST SELLER
+        </h2>
+    </div>
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-content: space-between;  width: 1140px;">
+        {% for product in bestSellingProducts %}
+        <div style="background-color: #212529; width: 370px; height: 350px; margin-bottom: 15px;">
+            <div style="display: flex; flex-direction: column; margin: 15px;">
+                {% if product.image %}
+                <img src="{{product.image.url}}" alt="" style="height:216px; margin-bottom: 20px;" >
+                {% endif %}
+                <p class="productDescription" style="color: white;">{{product.name}}</p>
+                <p class="productDescription" style="color: white;"> <span class="tag">EGP</span> {{product.price}}</p>
+                <button class="btn">Add to cart</button>
+            </div>
+        </div>
+            {% endfor %}
+        </div>
+    
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var i = 0;
+    var images = [];
+    var time = 3000;
+        
+    images[0] = "{% static '/img/img1.jpg' %}";
+    images[1] = "{% static '/img/img2.jpg' %}";
+    images[2] = "{% static '/img/img3.jpg' %}";
+    images[3] = "{% static '/img/img4.jpg' %}";
+    
+
+    function changeImg(){
+        slide.src = images[i];
+
+        if(i < images.length - 1){
+        i++; 
+        } else { 
+            i = 0;
+        }
+
+    };
+    setInterval(changeImg, time);
+
+</script>
 {% endblock %}
