@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Steam Cards
+{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'core/steamCards/steamCards.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="products-container">
+    {% for item in steamCards %}
+    <div class="card-item">
+        {% if item.image%}
+        <div class="img-div">
+        <img src="{{item.image.url}}" alt="product-image">
+        <hr class="text-light">
+        </div>
+        {% endif %}
+        <div class="desc">
+            <p>Name: {{item.name}}</p>
+            <p>price: {{item.price}}</p>
+            {% if item.stock > 0 %}
+            <p>Stock: <span class="text-success">in Stock</span></p>
+            {% else %}
+            <p>Stock: <span class="text-danger">Out of Stock</span></p>
+            {% endif %}
+            <hr class="text-light">
+        </div>
+
+        <div class="btn-div">
+            <a class="cartAnchor" href="{% url 'addToCart' item.id %}"><button class="btn btn-light cartBtn">Add to Cart</button></a>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+
+

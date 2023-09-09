@@ -107,3 +107,13 @@ a:hover{
     display: flex;
     justify-content: center;
 }
+
+.view-cart{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.view-cart button{
+    width: 75%;
+}

@@ -11,7 +11,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">Steam Cards</a>
+            <a class="nav-link" href="{% url 'steamCards'%}">Steam Cards</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">VPN</a>
@@ -55,7 +55,7 @@
 
     {% if request.user.is_superuser %}
     <div id="access">
-    <button class="btn btn-dark access-btn"><a class="access-link" href="admin/">Admin Panel</a></button>
+    <button class="btn btn-dark access-btn"><a class="access-link" href="http://127.0.0.1:8000/admin/">Admin Panel</a></button>
     <button class="btn btn-dark access-btn"><a class="access-link" href="">Feedbacks</a></button>
     </div>
     <hr class="text-light">
@@ -81,19 +81,23 @@
 
     {% for cartItem in userCartItems %}
     <div class="delete-div">
-      <a href=""><i class="fa fa-trash mb-2 delete-item text-light" aria-hidden="true" style="font-size:20px; width: 20px;"></i></a>
+      <a href="{% url 'deleteFromCart' cartItem.id %}"><i class="fa fa-trash mb-2 delete-item text-light" aria-hidden="true" style="font-size:20px; width: 20px;"></i></a>
     </div>
     <div class="cart-items">
       {% if cartItem.product.image %}
         <img src="{{cartItem.product.image.url}}" class="cart-item-img" alt="product-img" >
       {% endif %}
-      <div class="cart-items-details">
+      <div class="ms-2 cart-items-details">
         <p class="cart-item-detail">Name: {{cartItem.product.name}}</p>
         <p class="cart-item-detail">Price: {{cartItem.product.price}}</p>
       </div>
     </div>
     <hr class="text-light">
     {% endfor %}
+
+    <div class="view-cart">
+     <button class="btn btn-dark access-btn"><a class="access-link" href="{% url 'viewCart' %}">View Cart</a></button>
+    </div>
 
     <div class="logout-div">
       <button class="btn btn-dark access-btn"><a class="access-link" href="{% url 'logout' %}">Logout</a></button>
