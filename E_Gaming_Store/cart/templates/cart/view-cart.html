@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Cart
+{% endblock %}
+
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'cart/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="header-container">
+    <h2>Welcome to your Cart</h3>
+        <hr class="text-light">
+</div>
+
+<div class="cart-container">
+    <div class="items-container">
+        {% for item in userCartItems %}
+        <div class="item-container">
+            <img src="{{item.product.image.url}}" width="460px"  alt="product image">
+            <p>Name: {{item.product.name}}</p>
+            <p>Price: {{item.product.price}} EGP</p>
+        </div>
+        <hr class="text-light">
+        {% endfor%}
+    </div>
+
+    <div class="total-container">
+        <h3 class="total-h">Total Price: {{totalPrice}}EGP</h3>
+        <hr class="text-light">
+        <button class="btn btn-light checkoutBtn">Checkout</button>
+    </div>
+</div>
+
+{% endblock %}

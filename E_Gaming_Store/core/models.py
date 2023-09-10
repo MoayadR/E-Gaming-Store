@@ -2,7 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 import PIL
 
+
 # Create your models here.
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.name)
+
+
 class Product(models.Model):
     name = models.CharField(max_length=100)
     discount = models.IntegerField(null=True, blank=True)
@@ -10,6 +19,7 @@ class Product(models.Model):
     price = models.IntegerField()
     stock = models.IntegerField()
     image = models.ImageField(null=True, blank=True, upload_to="ProductImages/")
+    category = models.ForeignKey(Category , on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return str(self.name)
@@ -34,10 +44,3 @@ class Cart_Item(models.Model):
 
     def __str__(self):
         return str(self.cart)
-
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
-
-    def __str__(self):
-        return str(self.name)
