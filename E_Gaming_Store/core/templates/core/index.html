@@ -27,7 +27,7 @@ Homepage
                 {% endif %}
                 <p class="productDescription" style="color: white;">{{product.name}}</p>
                 <p class="productDescription" style="color: white;"> <span class="tag">EGP</span> {{product.price}}</p>
-                <a href="{% url 'addToCart' product.id %}"><button class="btn">Add to cart</button></a>
+                <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
             </div>
         </div>
             {% endfor %}
