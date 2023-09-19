@@ -10,14 +10,27 @@
     <link rel="stylesheet" href="{% static 'core/base/base.css'%}">
     <link rel="stylesheet" href="{% static 'core/navbar/navbar.css'%}">
     <link rel="stylesheet" href="{% static 'core/footer/footer.css'%}">
-    <style>
-        body{
-            background-image: url('{% static 'img/bg.jpg'%}');
-            /* background-repeat: no-repeat;
-            background-size: cover; */
-            background-position: center;
+
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
         }
-    </style>
+        return cookieValue;
+    }
+    const csrftoken = getToken('csrftoken');
+    </script>
     {% block links%}
 
     {% endblock %}
@@ -41,6 +54,7 @@
     {% include "footer.html" %}
 
     <script src="{% static 'Bootstrap/js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cart/js/cart.js' %}"></script>
     {% block scripts %}
 
     {% endblock %}

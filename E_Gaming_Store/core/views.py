@@ -29,5 +29,3 @@ def steamCardsPage(request):
         numberOfItems = userCartItems.count()
         return render(request , 'core/steamCards.html' , {"numberOfItems" : numberOfItems , 'userCartItems': userCartItems , 'steamCards' : steamCards })
     return render(request , 'core/index.html' , {'steamCards' : steamCards})
-
-    
