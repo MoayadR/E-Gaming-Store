@@ -81,7 +81,7 @@
 
     {% for cartItem in userCartItems %}
     <div class="delete-div">
-      <a href="{% url 'deleteFromCart' cartItem.id %}"><i class="fa fa-trash mb-2 delete-item text-light" aria-hidden="true" style="font-size:20px; width: 20px;"></i></a>
+      <a data-cartitem ='{{cartItem.id}}' ><i class="fa fa-trash mb-2 delete-item text-light" aria-hidden="true" style="font-size:20px; width: 20px;"></i></a>
     </div>
     <div class="cart-items">
       {% if cartItem.product.image %}
@@ -92,20 +92,20 @@
         <p class="cart-item-detail">Price: {{cartItem.product.price}}</p>
       </div>
     </div>
-    <hr class="text-light">
+    <hr class="text-light cart-line">
     {% endfor %}
-
-    <div class="view-cart">
-     <button class="btn btn-dark access-btn"><a class="access-link" href="{% url 'viewCart' %}">View Cart</a></button>
-    </div>
-
-    <div class="logout-div">
-      <button class="btn btn-dark access-btn"><a class="access-link" href="{% url 'logout' %}">Logout</a></button>
-    </div>
      
     {% endif %}
 
     </div>
+    
+    <div class="view-cart">
+      <button class="btn btn-dark access-btn"><a class="access-link" href="{% url 'viewCart' %}">View Cart</a></button>
+     </div>
+ 
+     <div class="logout-div">
+       <button class="btn btn-dark access-btn"><a class="access-link" href="{% url 'logout' %}">Logout</a></button>
+     </div>
 
   </div>
 </div>

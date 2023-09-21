@@ -13,21 +13,19 @@ def viewCart(request):
     
     return render(request , 'cart/view-cart.html' , {'userCartItems' : userCartItems , "numberOfItems" : numberOfItems , 'totalPrice': totalPrice} )
 
-def addToCart(request , productID):
-    Cart_Item.objects.create(cart = Cart.objects.get(user = request.user) , product = Product.objects.get(id = productID))
-    return redirect('viewCart')
-
-def deleteFromCart(request , cartItemID):
-    Cart_Item.objects.get(id = cartItemID).delete()
-    return redirect('viewCart')
 
 def updateCart(request):
-    data = json.loads(request.body)
-    product = data['product']
-    action = data['action']
-    Cart_Item.objects.create(cart = Cart.objects.get(user = request.user) , product = Product.objects.get(id = product))
-
-
-    print('Action: ', action)
-    print('product: ', product)
-    return JsonResponse('Cart was updated', safe=False)
+    if request.method == "POST":
+        data = json.loads(request.body)
+        product = data['product']
+        cartItem = Cart_Item.objects.create(cart = Cart.objects.get(user = request.user) , product = Product.objects.get(id = product))
+        dict = {'productID' : cartItem.id , 'productName' : cartItem.product.name , 'price': cartItem.product.price , 'image' : cartItem.product.image.url}
+        return JsonResponse(dict, safe=False)
+    
+    if request.method == 'DELETE':
+        data = json.loads(request.body)
+        cartItem = data['cartItem']
+        item = Cart_Item.objects.get(id = cartItem)
+        price = item.product.price
+        item.delete()
+        return JsonResponse({'price':price} , safe=False)
