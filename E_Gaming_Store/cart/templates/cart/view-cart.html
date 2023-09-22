@@ -20,17 +20,22 @@ Cart
 <div class="cart-container">
     <div class="items-container">
         {% for item in userCartItems %}
+        <div class="main-cart-delete-div">
+            <a data-cartitem ='{{item.id}}' ><i class="fa fa-trash mb-2 delete-item text-light" aria-hidden="true" style="font-size:20px; width: 20px;"></i></a>
+          </div>
         <div class="item-container">
+            {% if item.product.image %}
             <img src="{{item.product.image.url}}" width="460px"  alt="product image">
+            {% endif %}
             <p>Name: {{item.product.name}}</p>
             <p>Price: {{item.product.price}} EGP</p>
         </div>
-        <hr class="text-light">
+        <hr class="text-light main-cart-line">
         {% endfor%}
     </div>
 
     <div class="total-container">
-        <h3 class="total-h">Total Price: {{totalPrice}}EGP</h3>
+        <h3 class="total-h">Total Price: <span class="total-price">{{totalPrice}}</span> EGP</h3>
         <hr class="text-light">
         <button class="btn btn-light checkoutBtn">Checkout</button>
     </div>

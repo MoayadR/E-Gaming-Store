@@ -32,12 +32,18 @@ Steam Cards
         </div>
 
         <div class="btn-div">
-            <a class="cartAnchor" href="{% url 'addToCart' item.id %}"><button class="btn btn-light cartBtn">Add to Cart</button></a>
+            <a class="cartAnchor"><button data-product={{item.id}} class="btn btn-light update-cart">Add to Cart</button></a>
         </div>
 
     </div>
     {% endfor %}
 </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
 
 {% endblock %}
 

@@ -32,3 +32,8 @@
     color: #f8f9fa;
     flex-direction: column;
 }
+
+.main-cart-delete-div{
+    display: flex;
+    justify-content: end;
+}
