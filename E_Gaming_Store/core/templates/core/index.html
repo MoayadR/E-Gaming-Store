@@ -20,13 +20,18 @@ Homepage
     </div>
     <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-content: space-between;  width: 1140px;">
         {% for product in bestSellingProducts %}
-        <div style="background-color: #212529; width: 370px; height: 350px; margin-bottom: 15px;">
-            <div style="display: flex; flex-direction: column; margin: 15px;">
+        <div style="background-color: #212529; width: 370px; margin-bottom: 15px;">
+            <div style="display: flex; flex-direction: column; margin: 10px;">
                 {% if product.image %}
-                <img src="{{product.image.url}}" alt="" style="height:216px; margin-bottom: 20px;" >
+                <img src="{{product.image.url}}" alt="" style=" margin-bottom: 20px;" >
                 {% endif %}
                 <p class="productDescription" style="color: white;">{{product.name}}</p>
                 <p class="productDescription" style="color: white;"> <span class="tag">EGP</span> {{product.price}}</p>
+                {% if product.stock > 0 %}
+                <p class="productDescription" style="color: white;">Stock: <span class="text-success">in Stock</span></p>
+                {% else %}
+                <p class="productDescription" style="color: white;">Stock: <span class="text-danger">Out of Stock</span></p>
+                {% endif %}
                 <button data-product={{product.id}} class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
             </div>
         </div>

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Cart , Cart_Item , Payment , Product
+from .models import Cart , Cart_Item , Payment , Product, Region
 from django.db.models import Count
 
 def getBestSellingProducts():
@@ -21,8 +21,19 @@ def index(request):
         return render(request , 'core/index.html' , {"numberOfItems" : numberOfItems , 'userCartItems': userCartItems , 'bestSellingProducts': bestSellingProducts})
     return render(request , 'core/index.html' , {'bestSellingProducts': bestSellingProducts})
 
-def steamCardsPage(request):
-    steamCards = Product.objects.filter(category__name = 'Steam')
+def steamRegionPage(request):
+    regions = set(Region.objects.filter(product__category__name = 'Steam'))
+    if request.user.is_authenticated:
+        userCart = Cart.objects.get(user = request.user)
+        userCartItems = Cart_Item.objects.filter(cart = userCart)
+        numberOfItems = userCartItems.count()
+        return render(request , 'core/steamRegion.html' , {"numberOfItems" : numberOfItems , 'userCartItems': userCartItems , 'regions' : regions })
+    return render(request , 'core/index.html' , {'regions' : regions})
+
+
+def steamCardsPage(request, region_name):
+    steamCards = Product.objects.filter(region__name = region_name)
+    print(steamCards)
     if request.user.is_authenticated:
         userCart = Cart.objects.get(user = request.user)
         userCartItems = Cart_Item.objects.filter(cart = userCart)
