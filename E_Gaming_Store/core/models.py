@@ -11,14 +11,19 @@ class Category(models.Model):
     def __str__(self):
         return str(self.name)
 
+class Region(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(null=True, blank=True, upload_to="ProductImages/")
+    def __str__(self):
+        return str(self.name)
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
     discount = models.IntegerField(null=True, blank=True)
-    region = models.CharField(max_length=100)
     price = models.IntegerField()
     stock = models.IntegerField()
     image = models.ImageField(null=True, blank=True, upload_to="ProductImages/")
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, blank=True, null=True)
     category = models.ForeignKey(Category , on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):

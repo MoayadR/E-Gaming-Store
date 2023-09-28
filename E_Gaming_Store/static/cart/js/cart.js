@@ -99,7 +99,7 @@ function addToCartOffCanavas(data){
     cartDiv.appendChild(hr);
 
     cartItemsNumber.innerHTML = parseInt(cartItemsNumber.innerHTML) + 1;
-    alert('Product Added To Cart Successfully!');
+    // alert('Product Added To Cart Successfully!');
     applyDelete();
 }
 
@@ -198,7 +198,7 @@ function deleteFromDisplay(index){
     cartItemsDivs[index].style.display = 'none';
     hrLines[index].style.display = 'none';
     cartItemsNumber.innerHTML = parseInt(cartItemsNumber.innerHTML) - 1;
-    alert('Product Removed Successfully!');
+    // alert('Product Removed Successfully!');
 }
 
 
