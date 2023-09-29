@@ -14,16 +14,18 @@ var hrLines2 = document.querySelectorAll('hr.main-cart-line');
 const totalPrice = document.querySelector('.total-price');
 
 
+async function onClickAdd(button){
+    var product = button.dataset.product
+    if(user == 'AnonymousUser'){
+        console.log('Not logged in')
+    }else{
+        data = await updateUserCart(product)
+        addToCartOffCanavas(data)
+    }
+}
+
 for(let i = 0; i < updateBtns.length; i++){
-    updateBtns[i].addEventListener('click', async function(){
-        var product = this.dataset.product
-        if(user == 'AnonymousUser'){
-            console.log('Not logged in')
-        }else{
-            data = await updateUserCart(product)
-            addToCartOffCanavas(data)
-        }
-    })
+    updateBtns[i].addEventListener('click', onClickAdd.bind(null , updateBtns[i] ) )
 }
 
 async function updateUserCart(product){
@@ -104,8 +106,26 @@ function addToCartOffCanavas(data){
 }
 
 ///////////////////////////////////////////////////////////////////
-// delete buttons
 
+async function onClickDelete(button , index ){
+    var cartItem = button.dataset.cartitem;
+    if(user == 'AnonymousUser'){
+        console.log('Not logged in')
+    }else{
+        data = await deleteFromCart(cartItem)
+        if (data['price'])
+        {
+            deleteFromDisplay(index);
+            if (deleteButtons2.length !== 0)
+            {
+                deleteFromDisplayMain(index , data['price']);
+            }
+        }
+        else{
+            alert('An Error Occured! Please try again later.');
+        }
+    }
+}
 
 
 applyDelete();
@@ -124,25 +144,7 @@ function applyDelete(){
         if (deleteButtons[i].getAttribute('listener') !== 'true') 
         {
             deleteButtons[i].setAttribute('listener' , 'true');
-            deleteButtons[i].addEventListener('click',  async function(){
-                var cartItem = this.dataset.cartitem;
-                if(user == 'AnonymousUser'){
-                    console.log('Not logged in')
-                }else{
-                    data = await deleteFromCart(cartItem)
-                    if (data['price'])
-                    {
-                        deleteFromDisplay(i);
-                        if (deleteButtons2.length !== 0)
-                        {
-                            deleteFromDisplayMain(i , data['price']);
-                        }
-                    }
-                    else{
-                        alert('An Error Occured! Please try again later.');
-                    }
-                }
-            })
+            deleteButtons[i].addEventListener('click', onClickDelete.bind(null,deleteButtons[i] , i) )
         }
     }    
 
@@ -150,25 +152,7 @@ function applyDelete(){
         if (deleteButtons2[i].getAttribute('listener') !== 'true') 
         {
             deleteButtons2[i].setAttribute('listener' , 'true');
-            deleteButtons2[i].addEventListener('click',  async function(){
-                var cartItem = this.dataset.cartitem;
-                if(user == 'AnonymousUser'){
-                    console.log('Not logged in')
-                }else{
-                    data = await deleteFromCart(cartItem)
-                    if (data['price'])
-                    {
-                        deleteFromDisplay(i);
-                        if (deleteButtons2.length !== 0)
-                        {
-                            deleteFromDisplayMain(i , data['price']);
-                        }
-                    }
-                    else{
-                        alert('An Error Occured! Please try again later.');
-                    }
-                }
-            })
+            deleteButtons2[i].addEventListener('click', onClickDelete.bind(null,deleteButtons[i] , i) )
         }
     } 
 
@@ -211,31 +195,5 @@ function deleteFromDisplayMain(index , price){
     console.log(price);
     totalPrice.innerHTML = String(parseInt(totalPrice.innerHTML) - price);
 }
-
-
-
-
-
-async function onClickDelete(i , data){
-    var cartItem = this.dataset.cartitem;
-    if(user == 'AnonymousUser'){
-        console.log('Not logged in')
-    }else{
-        data = await deleteFromCart(cartItem)
-        if (data['price'])
-        {
-            deleteFromDisplay(i);
-            if (deleteButtons2.length !== 0)
-            {
-                deleteFromDisplayMain(i , data['price']);
-            }
-        }
-        else{
-            alert('An Error Occured! Please try again later.');
-        }
-    }
-}
-
-
 
 

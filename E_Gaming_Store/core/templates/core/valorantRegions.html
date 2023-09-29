@@ -13,17 +13,17 @@ Steam Cards
 {% block content %}
 
     <div class="container" style="display: flex; justify-content: center; width: 1140px; flex-direction: column; margin-top: 50px; margin-bottom: 50px;">
-        <h1 style="font-family: sans-serif; color: white; margin-bottom: 50px; font-weight: bold;">Steam</h1>
+        <h1 style="font-family: sans-serif; color: white; margin-bottom: 50px; font-weight: bold;">Valorant Points</h1>
         <div style="display: flex; flex-direction: row; align-content: space-between; width: 1140px;">
             {% for cat in category %}
                 <div class="region-card" style="margin: 15px 40px 15px 0px; height: 260px; width: 220px; ">
                     {% if cat.image %}
                         <div style="height: 220px; width: 220px; margin-bottom: 15px; border-radius: 20px; overflow: hidden;">
-                            <a href="{% url 'viewRegion' cat.name%}">
+                            <a href="{% url 'valorantCurrency' cat.name%}">
                                 <img src="{{cat.image.url}}" alt="" style="height: 220px; width: 220px; border-radius: 20px;">
                             </a>
                         </div>
-                        <a style="text-decoration: none;" href="{% url 'viewRegion' cat.name%}"><p class="name_tag" style="font-family: sans-serif; font-weight: bold; margin-left: 5px;">{{cat.name}}</p></a>
+                        <a style="text-decoration: none;" href="{% url 'valorantCurrency' cat.name%}"><p class="name_tag" style="font-family: sans-serif; font-weight: bold; margin-left: 5px;">{{cat.name}}</p></a>
                     {% endif %}
                 </div>
                 
