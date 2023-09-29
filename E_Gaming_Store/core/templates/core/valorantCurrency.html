@@ -13,9 +13,9 @@ Steam Cards
 {% block content %}
 
     <div class="container" style="display: flex; justify-content: center; width: 1140px; flex-direction: column; margin-top: 50px; margin-bottom: 50px;">
-        <h1 style="color: white !important; font-family: sans-serif !important; margin-bottom: 50px; font-weight: bold;">{{steamCards.first.category.name}}</h1>
+        <h1 style="color: white !important; font-family: sans-serif !important; margin-bottom: 50px; font-weight: bold;">{{valorantVP.first.category.name}}</h1>
         <div style="display: flex; flex-direction: row; align-content: space-between; width: 1140px;">
-            {% for product in steamCards %}
+            {% for product in valorantVP %}
             <div style="background-color: #212529; width: 370px; margin-bottom: 15px; margin-right: 15px;">
                 <div style="display: flex; flex-direction: column; margin: 15px;">
                     {% if product.image %}

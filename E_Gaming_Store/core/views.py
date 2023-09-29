@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Cart , Cart_Item , Payment , Product, Region
+from .models import Cart , Cart_Item , Payment , Product, Region , Category
 from django.db.models import Count
 
 def getBestSellingProducts():
@@ -22,21 +22,59 @@ def index(request):
     return render(request , 'core/index.html' , {'bestSellingProducts': bestSellingProducts})
 
 def steamRegionPage(request):
-    regions = set(Region.objects.filter(product__category__name = 'Steam'))
+    category = set(Category.objects.filter(name__contains = 'Steam'))
     if request.user.is_authenticated:
         userCart = Cart.objects.get(user = request.user)
         userCartItems = Cart_Item.objects.filter(cart = userCart)
         numberOfItems = userCartItems.count()
-        return render(request , 'core/steamRegion.html' , {"numberOfItems" : numberOfItems , 'userCartItems': userCartItems , 'regions' : regions })
-    return render(request , 'core/index.html' , {'regions' : regions})
+        return render(request , 'core/steamRegion.html' , {"numberOfItems" : numberOfItems , 'userCartItems': userCartItems , 'category' : category })
+    return render(request , 'core/steamRegion.html' , {'regions' : category})
 
 
-def steamCardsPage(request, region_name):
-    steamCards = Product.objects.filter(region__name = region_name)
-    print(steamCards)
+def steamCardsPage(request, category_name):
+    steamCards = Product.objects.filter(category__name = category_name)
     if request.user.is_authenticated:
         userCart = Cart.objects.get(user = request.user)
         userCartItems = Cart_Item.objects.filter(cart = userCart)
         numberOfItems = userCartItems.count()
         return render(request , 'core/steamCards.html' , {"numberOfItems" : numberOfItems , 'userCartItems': userCartItems , 'steamCards' : steamCards })
-    return render(request , 'core/index.html' , {'steamCards' : steamCards})
+    return render(request , 'core/steamCards.html' , {'steamCards' : steamCards})
+
+
+
+def valorantRegionPage(request):
+    category = set(Category.objects.filter(name__contains = "VP "))
+    if request.user.is_authenticated:
+        userCart = Cart.objects.get(user = request.user)
+        userCartItems = Cart_Item.objects.filter(cart = userCart)
+        numberOfItems = userCartItems.count()
+        return render(request , 'core/valorantRegions.html' , {"numberOfItems" : numberOfItems , 'userCartItems': userCartItems, 'category':category  })
+    return render(request , 'core/valorantRegions.html' , {'regions' : category})
+
+def valorantCurrency(request , category_name):
+    valorantVP = Product.objects.filter(category__name = category_name)
+    if request.user.is_authenticated:
+        userCart = Cart.objects.get(user = request.user)
+        userCartItems = Cart_Item.objects.filter(cart = userCart)
+        numberOfItems = userCartItems.count()
+        return render(request , 'core/valorantCurrency.html' , {"numberOfItems" : numberOfItems , 'userCartItems': userCartItems , 'valorantVP' : valorantVP  })
+    return render(request , 'core/valorantCurrency.html' , {'valorantVP' : valorantVP})
+    
+def categoryVPNPage(request):
+    categories = Category.objects.filter(name__contains = 'VPN')
+    if request.user.is_authenticated:
+        userCart = Cart.objects.get(user = request.user)
+        userCartItems = Cart_Item.objects.filter(cart = userCart)
+        numberOfItems = userCartItems.count()
+        return render(request , 'core/vpnsCategories.html' , {"numberOfItems" : numberOfItems , 'userCartItems': userCartItems , 'categories' : categories })
+    return render(request , 'core/vpnsCategories.html' , {'categories' : categories})
+
+def VPNPage(request, category_name):
+    products = Product.objects.filter(category__name =category_name)
+    if request.user.is_authenticated:
+        userCart = Cart.objects.get(user = request.user)
+        userCartItems = Cart_Item.objects.filter(cart = userCart)
+        numberOfItems = userCartItems.count()
+        return render(request , 'core/vpnPage.html' , {"numberOfItems" : numberOfItems , 'userCartItems': userCartItems , 'products' : products })
+    return render(request , 'core/vpnPage.html' , {'products' : products})
+    
